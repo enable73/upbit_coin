@@ -1,3 +1,4 @@
+#인증 획득
 import jwt   # PyJWT 라이브러리를 설치 해야 함
 import uuid
 
