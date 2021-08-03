@@ -1,6 +1,5 @@
 #거래 기준 데이터로 비트코인을 벤치마킹 하기 위해
 import requests
-import pprint
 import pandas as pd
 
 market_name ='USDT-BTC'
@@ -9,15 +8,11 @@ conver_price = "KRW" #종가 환산단위 표시 . 생략 가능
 
 url = "https://api.upbit.com/v1/candles/days"
 
-
 querystring = {"market":market_name,"count": count_number, "convertingPriceUnit" : conver_price }
 headers = {"Accept": "application/json"}
 res = requests.request("GET", url, headers=headers, params=querystring)
 
 json_data =(res.json())
-
-pp = pprint.PrettyPrinter(indent=4)
-pp.pprint(json_data)
 
 market_df = pd.DataFrame(json_data)
 
@@ -43,5 +38,3 @@ market_df.rename(columns= {'market':'마켓명',
 
 
 print(market_df)
-
-#server_url + "/v1/accounts"

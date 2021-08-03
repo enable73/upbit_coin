@@ -2,7 +2,6 @@ import requests
 import pprint
 import pandas as pd
 
-
 def current_price(market_name):
     url = "https://api.upbit.com/v1/ticker"
     querystring = {"markets": market_name}
@@ -10,8 +9,10 @@ def current_price(market_name):
     res = requests.request("GET", url, headers=headers, params=querystring)
     json_data = (res.json())
 
+    """
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(json_data)
+    """
 
     market_df = pd.DataFrame(json_data)
 
@@ -34,16 +35,21 @@ def current_price(market_name):
                               'lowest_52_week_date': '52주신저가달성일',
                               'timestamp': '타임스탬프'
                               }, inplace=True)
-    #함수 밖에서도 변수를 사용하기 위해 전역변수로 선언
-    global c_price
-    #해당 종목의 현재 시세를 c_price에 저장. 이 아래로 이 함수에서 사용할 결과물 변수를 만들어 나가면 된다.
-    c_price = json_data[0].get('trade_price')
 
+    global 현재가격
+    #해당 종목의 현재 시세를 c_price에 저장. 이 아래로 이 함수에서 사용할 결과물 변수를 만들어 나가면 된다.
+    현재가격 = json_data[0].get('trade_price')
+
+    """
+    print(market_df)
+    """
     return
 
-"""
-current_price('KRW-ETH')
-"""
+market_name= "KRW-BTC"
+current_price(market_name)
+
+print(market_name, "의 현재가격=", 현재가격)
+
 
 
 
