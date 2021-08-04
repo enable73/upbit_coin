@@ -1,5 +1,4 @@
 import requests
-import pprint
 import pandas as pd
 
 url = "https://api.upbit.com/v1/market/all"
@@ -9,10 +8,7 @@ headers = {"Accept": "application/json"}
 res = requests.request("GET", url, headers=headers, params=querystring)
 
 json_data =(res.json())
-"""
-pp = pprint.PrettyPrinter(indent=4)
-pp.pprint(json_data)
-"""
+
 market_df = pd.DataFrame(json_data)
 
 #개발가이드를 확인 하면서 컬럼명을 한글로 바꿈
@@ -23,3 +19,6 @@ market_df = market_df.sort_values(by = 'ticker', ascending = False, axis = 0)
 market_df = market_df.reset_index(drop=True)
 
 
+market_data = market_df['ticker']
+for market_name in market_data:
+    print(market_name)

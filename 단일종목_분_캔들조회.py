@@ -9,7 +9,6 @@ m_unit = '1' #분 단위. 가능한 값 : 1, 3, 5, 15, 10, 30, 60, 240
 
 url = "https://api.upbit.com/v1/candles/minutes/"+m_unit
 
-
 querystring = {"market":market_name,"count": count_number}
 headers = {"Accept": "application/json"}
 res = requests.request("GET", url, headers=headers, params=querystring)
@@ -33,7 +32,6 @@ market_df.rename(columns= {'market':'마켓명',
                            'candle_acc_trade_price':'누적거래금액',
                            'candle_acc_trade_volume':'누적거래량','unit':'분'
                            }, inplace=True)
-
 
 print(market_df)
 
