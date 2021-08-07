@@ -4,7 +4,7 @@ import pprint
 import pandas as pd
 
 market_name ='KRW-BTC'
-count_number = '1' #시세 캔들 최대 200개까지 요청 가능(count)
+count_number = '10' #시세 캔들 최대 200개까지 요청 가능(count)
 m_unit = '1' #분 단위. 가능한 값 : 1, 3, 5, 15, 10, 30, 60, 240
 
 url = "https://api.upbit.com/v1/candles/minutes/"+m_unit
