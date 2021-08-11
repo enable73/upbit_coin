@@ -9,10 +9,8 @@ def current_price(market_name):
     res = requests.request("GET", url, headers=headers, params=querystring)
     json_data = (res.json())
 
-    """
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(json_data)
-    """
 
     market_df = pd.DataFrame(json_data)
 
